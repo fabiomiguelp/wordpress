@@ -28,6 +28,15 @@ services:
       - WORDPRESS_DB_NAME=wordpress
     volumes:
       - ./wordpress_data:/var/www/html
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=wordpress
+      - PMA_PASSWORD=wordpress
 volumes:
   db_data:
   wordpress_data:
