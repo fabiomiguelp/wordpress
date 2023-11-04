@@ -21,10 +21,10 @@ services:
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: your_mysql_password
+      WORDPRESS_DB_PASSWORD: wordpress
     volumes:
       - ./wordpress_data:/var/www/html  # Add this volume definition
-      
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
