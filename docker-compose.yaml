@@ -14,7 +14,9 @@ services:
   wordpress:
     depends_on:
       - db
-    image: wordpress:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 8000:80
     restart: always
@@ -24,16 +26,7 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
     volumes:
       - ./wordpress_data:/var/www/html  # Add this volume definition
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    restart: always
-    ports:
-      - 8080:80
-    environment:
-      - PMA_HOST=db
-      - PMA_USER=wordpress
-      - PMA_PASSWORD=wordpress
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
 volumes:
   db_data: {}
   wordpress_data: {}  # Define the volume for WordPress
